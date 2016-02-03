@@ -1,3 +1,6 @@
+import {Injectable} from 'angular2/core';
+
+@Injectable()
 export class LogService {
   static globalLoggerNr = 0;
   loggerNr;

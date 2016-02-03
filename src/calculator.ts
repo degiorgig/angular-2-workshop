@@ -33,7 +33,6 @@ export class Calculator {
   }
 
   calculate(a, b, operator) {
-    this.calculationService.methodFromOperator(operator)(+a, +b);
-    this.result = this.calculationService.result;
+    this.result = this.calculationService[operator](+a, +b);
   }
 }

@@ -1,26 +1,31 @@
-import {Injectable} from 'angular2/core';
+import {Injectable, Inject} from 'angular2/core';
+import {LogService} from './log-service';
 
 @Injectable()
 export class CalculationService {
-  result = 0;
+  logService;
 
-  add(num) {
-    this.result += num;
+  constructor(@Inject(LogService) logService) {
+    this.logService = logService;
   }
 
-  subtract(num) {
-    this.result -= num;
+  add(a, b) {
+    this.logService.log(`Calculating ${a} plus ${b}`);
+    return a + b;
   }
 
-  multiply(num) {
-    this.result *= num;
+  subtract(a, b) {
+    this.logService.log(`Calculating ${a} minus ${b}`);
+    return a - b;
   }
 
-  divide(num) {
-    this.result /= num;
+  multiply(a, b) {
+    this.logService.log(`Calculating ${a} multiplied with ${b}`);
+    return a * b;
   }
 
-  methodFromOperator(operator) {
-    return this[operator].bind(this);
+  divide(a, b) {
+    this.logService.log(`Calculating ${a} divided by ${b}`);
+    return a / b;
   }
 }
