@@ -6,32 +6,32 @@ import {LogService} from './log-service';
 
 @Injectable()
 export class CalculationService {
-  result = new Subject();
-  logService;
+  result: Subject<Number> = new Subject();
+  logService: LogService;
 
-  constructor(@Inject(LogService) logService) {
+  constructor(@Inject(LogService) logService: LogService) {
     this.logService = logService;
   }
 
-  add(a, b) {
+  add(a: Number, b: Number): Subject<Number> {
     this.logService.log(`Calculating ${a} plus ${b}`);
     setTimeout(() => this.result.next(a + b), 1000);
     return this.result;
   }
 
-  subtract(a, b) {
+  subtract(a: Number, b: Number): Subject<Number> {
     this.logService.log(`Calculating ${a} minus ${b}`);
     setTimeout(() => this.result.next(a - b), 1000);
     return this.result;
   }
 
-  multiply(a, b) {
+  multiply(a: Number, b: Number): Subject<Number> {
     this.logService.log(`Calculating ${a} multiplied with ${b}`);
     setTimeout(() => this.result.next(a * b), 1000);
     return this.result;
   }
 
-  divide(a, b) {
+  divide(a: Number, b: Number): Subject<Number> {
     this.logService.log(`Calculating ${a} divided by ${b}`);
     setTimeout(() => this.result.next(a / b), 1000);
     return this.result;

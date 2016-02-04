@@ -1,7 +1,7 @@
 import {Component, Inject} from 'angular2/core';
 import {Control} from 'angular2/common';
 import {CalculationService} from './calculation-service';
-import {Observable} from 'rxjs/Rx';
+import {Observable, Subject} from 'rxjs/Rx';
 
 @Component({
   selector: 'calculator',
@@ -27,13 +27,13 @@ import {Observable} from 'rxjs/Rx';
   `
 })
 export class Calculator {
-  result;
-  calculationService;
-  a = new Control();
-  b = new Control();
-  operator = new Control();
+  result: Subject<Number>;
+  calculationService: CalculationService;
+  a: Control = new Control();
+  b: Control = new Control();
+  operator: Control = new Control();
 
-  constructor(@Inject(CalculationService) calculationService) {
+  constructor(@Inject(CalculationService) calculationService: CalculationService) {
     this.calculationService = calculationService;
     this.result = Observable
       .combineLatest(this.operator.valueChanges,
