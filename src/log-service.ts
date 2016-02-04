@@ -10,6 +10,8 @@ export class LogService {
   }
 
   log(message) {
-    console.log(`Logger(${this.loggerNr}): ${message}`);
+    setTimeout(() => {
+      console.log(`Logger(${this.loggerNr}): ${message}`);
+    }, 1000);
   }
 }
