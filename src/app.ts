@@ -11,7 +11,7 @@ import {LogService} from './log-service';
   providers: [LogService]
 })
 export class App {
-  constructor(@Inject(LogService) logService) {
+  constructor(@Inject(LogService) logService: LogService) {
     logService.log('Application started');
   }
 }

@@ -1,31 +1,39 @@
+import {Injectable} from 'angular2/core';
+import {ReplaySubject} from 'rxjs/subject/ReplaySubject';
 import {Injectable, Inject} from 'angular2/core';
+import {Subject} from 'rxjs/Rx';
 import {LogService} from './log-service';
 
 @Injectable()
 export class CalculationService {
-  logService;
+  result: Subject = new Subject();
+  logService: LogService;
 
-  constructor(@Inject(LogService) logService) {
+  constructor(@Inject(LogService) logService: LogService) {
     this.logService = logService;
   }
 
-  add(a, b) {
+  add(a: Number, b: Number): Subject {
     this.logService.log(`Calculating ${a} plus ${b}`);
-    return a + b;
+    setTimeout(() => this.result.next(a + b), 1000);
+    return this.result;
   }
 
-  subtract(a, b) {
+  subtract(a: Number, b: Number): Subject {
     this.logService.log(`Calculating ${a} minus ${b}`);
-    return a - b;
+    setTimeout(() => this.result.next(a - b), 1000);
+    return this.result;
   }
 
-  multiply(a, b) {
+  multiply(a: Number, b: Number): Subject {
     this.logService.log(`Calculating ${a} multiplied with ${b}`);
-    return a * b;
+    setTimeout(() => this.result.next(a * b), 1000);
+    return this.result;
   }
 
-  divide(a, b) {
+  divide(a: Number, b: Number): Subject {
     this.logService.log(`Calculating ${a} divided by ${b}`);
-    return a / b;
+    setTimeout(() => this.result.next(a / b), 1000);
+    return this.result;
   }
 }
