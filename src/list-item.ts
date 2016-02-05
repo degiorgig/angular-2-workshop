@@ -8,7 +8,7 @@ import {Component, ChangeDetectionStrategy, Input} from 'angular2/core';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ListItem {
-  @Input() item;
+  @Input() item: String;
 
   ngOnChanges(inputChanges) {
     if (inputChanges.item) {

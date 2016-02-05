@@ -27,14 +27,16 @@ export class App {
   people: Array<String> = ['Andreas', 'Gion'];
 
   add(name: String) {
+    this.people = this.people.slice();
     this.people.push(name);
   }
 
   clear() {
-    this.people.length = 0;
+    this.people = [];
   }
 
   edit(index: String, name: String) {
+    this.people = this.people.slice();
     this.people[index] = name;
   }
 }

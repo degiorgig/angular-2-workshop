@@ -1,4 +1,4 @@
-import {Component, ChangeDetectionStrategy, Input, Inject, ChangeDetectorRef} from 'angular2/core';
+import {Component, ChangeDetectionStrategy, Input, Inject} from 'angular2/core';
 import {ListItem} from './list-item';
 
 @Component({
@@ -14,23 +14,7 @@ import {ListItem} from './list-item';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class List {
-  @Input() list;
-  previousLength: Number = 0;
-
-  constructor(@Inject(ChangeDetectorRef) changeDetectorRef) {
-    this.changeDetectorRef = changeDetectorRef;
-  }
-
-  ngDoCheck() {
-
-    if (this.list.length !== this.previousLength) {
-      console.log('List Do Check: Detected change');
-      this.changeDetectorRef.markForCheck();
-      this.previousLength = this.list.length;
-    } else {
-      console.log('List Do Check: No change');
-    }
-  }
+  @Input() list: Array<String>;
 
   ngOnChanges() {
     console.log('List OnChanges');
